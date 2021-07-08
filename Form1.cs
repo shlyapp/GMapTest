@@ -69,12 +69,32 @@ namespace GMapApp
         {
             if (e.Button == MouseButtons.Left)
             {
-                if ((Math.Round(gmap.FromLocalToLatLng(e.X, e.Y).Lat, 4) == Math.Round(marker.Position.Lat, 4))
-                    && (Math.Round(gmap.FromLocalToLatLng(e.X, e.Y).Lng, 4) == Math.Round(marker.Position.Lng, 4)))
-                {
-                    MessageBox.Show("В точку!");
-                }
+                checkingMarkerClick(e);
             }
+        }
+
+        private Boolean checkingMarkerClick(MouseEventArgs e)
+        {
+            // допустимая погрешность (область вокруг маркера)
+            double clickError = 0.0005;
+
+            // уставливаем координаты границ области
+            double leftBorder = Math.Round(marker.Position.Lat, 4) - clickError;
+            double rightBorder = Math.Round(marker.Position.Lat, 4) + clickError;
+            double upperBorder = Math.Round(marker.Position.Lng, 4) - clickError;
+            double lowerBorder = Math.Round(marker.Position.Lng, 4) + clickError;
+
+            // координаты мышки
+            double x = Math.Round(gmap.FromLocalToLatLng(e.X, e.Y).Lat, 4);
+            double y = Math.Round(gmap.FromLocalToLatLng(e.X, e.Y).Lng, 4);
+
+            if ((leftBorder <= x && x <= rightBorder) && (upperBorder <= y && y <= lowerBorder))
+            {
+                MessageBox.Show("Попал!");
+                return true;
+            }
+
+            return false;
         }
     }
 }
