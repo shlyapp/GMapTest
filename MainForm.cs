@@ -16,12 +16,14 @@ using GMap.NET.WindowsForms.ToolTips;
 
 namespace GMapApp
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
+        InfoForm infoForm;
+
         GMarkerGoogle[] markers = new GMarkerGoogle[6];
         GMapOverlay markersOverlay = new GMapOverlay("markers");
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -72,7 +74,7 @@ namespace GMapApp
                 new PointLatLng(56.35142687398434, 53.12557439423018)
             };
 
-            String[] toolTipText = new String[6]
+             String[] toolTipText = new String[6]
             {
                 "Сквер имени П.А. Кривоногова,\nпамятник П.А. Кривоногову",
                 "МБУ 'Киясовский районный музей\nКривоногова Петра Александровича'",
@@ -95,7 +97,13 @@ namespace GMapApp
 
         private void gmap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
         {
-            MessageBox.Show("Это: " + item.ToolTipText);
+            // без понятия почему, но switch не работает
+            if (item == markers[0]) { infoForm = new InfoForm(); infoForm.Show(); }
+            if (item == markers[1]) { MessageBox.Show("это музей!"); }
+            if (item == markers[2]) { }
+            if (item == markers[3]) { }
+            if (item == markers[4]) { }
+            if (item == markers[5]) { }
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 namespace GMapApp
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -67,7 +67,7 @@ namespace GMapApp
             this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.gmap);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Интерактивная карта";
             this.ResumeLayout(false);
 
         }
