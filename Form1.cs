@@ -18,8 +18,8 @@ namespace GMapApp
 {
     public partial class Form1 : Form
     {
-
-        GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(56.3442, 53.124), GMarkerGoogleType.red);
+        GMarkerGoogle[] markers = new GMarkerGoogle[6];
+        GMapOverlay markersOverlay = new GMapOverlay("markers");
 
         public Form1()
         {
@@ -28,11 +28,16 @@ namespace GMapApp
 
         private void gMapControl1_Load(object sender, EventArgs e)
         {
-            // Первоначальная настройки при загрузке gMapControl
+            firstSetupGmap();
+            loadMakers();  
+        }
 
+        // настройка gmap при первом запуске
+        private void firstSetupGmap()
+        {
             gmap.Bearing = 0;
             gmap.CanDragMap = true;
-            gmap.DragButton = MouseButtons.Right;
+            gmap.DragButton = MouseButtons.Left;
 
             gmap.GrayScaleMode = true;
 
@@ -48,53 +53,49 @@ namespace GMapApp
             gmap.ShowCenter = false;
             gmap.Zoom = 15;
 
-            gmap.MapProvider = GMap.NET.MapProviders.GMapProviders.GoogleMap;  // или GoogleMaps         
+            gmap.MapProvider = GMap.NET.MapProviders.GMapProviders.YandexHybridMap;  // или GoogleMaps         
 
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
             gmap.Position = new GMap.NET.PointLatLng(56.3490700, 53.1243900);
+        }
 
-            // Работа с маркерами
+        // загрузка всех маркеров
+        private void loadMakers()
+        {
+            PointLatLng[] coords = new PointLatLng[6]
+            {
+                new PointLatLng(56.34362607288647, 53.124973176563806),
+                new PointLatLng(56.34507985118993, 53.1246026136887),
+                new PointLatLng(56.344925259810594, 53.125269412994385),
+                new PointLatLng(56.34594547389484, 53.12523730645809),
+                new PointLatLng(56.34683348667316, 53.12585809611392),
+                new PointLatLng(56.35142687398434, 53.12557439423018)
+            };
 
-            GMapOverlay markersOverlay = new GMapOverlay("markers");
+            String[] toolTipText = new String[6]
+            {
+                "Сквер имени П.А. Кривоногова,\nпамятник П.А. Кривоногову",
+                "МБУ 'Киясовский районный музей\nКривоногова Петра Александровича'",
+                "Бюст Героя Советского Союза В.Г. Шамшурина\nи памятник труженикам тыла и детям войны",
+                "Памятник землякам, погибшим в локальных войнах",
+                "Мемориал памяти землякам, павшим\nв годы Великой Отечественной войны 1941-1945 гг",
+                "Бюст Героя Советского Союза В.Г. Шамшурина"
+            };
 
-            marker.ToolTip = new GMap.NET.WindowsForms.ToolTips.GMapRoundedToolTip(marker);
+            for (int i = 0; i < 6; i++)
+            {
+                markers[i] = new GMarkerGoogle(coords[i], GMarkerGoogleType.red);
+                markers[i].ToolTipText = toolTipText[i];
 
-            marker.ToolTipText = "Музей Кривоногова";
+                markersOverlay.Markers.Add(markers[i]);
+            }
 
-            markersOverlay.Markers.Add(marker);
             gmap.Overlays.Add(markersOverlay);
         }
 
-        private void gmap_MouseDown(object sender, MouseEventArgs e)
+        private void gmap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                checkingMarkerClick(e);
-            }
-        }
-
-        private Boolean checkingMarkerClick(MouseEventArgs e)
-        {
-            // допустимая погрешность (область вокруг маркера)
-            double clickError = 0.0005;
-
-            // уставливаем координаты границ области
-            double leftBorder = Math.Round(marker.Position.Lat, 4) - clickError;
-            double rightBorder = Math.Round(marker.Position.Lat, 4) + clickError;
-            double upperBorder = Math.Round(marker.Position.Lng, 4) - clickError;
-            double lowerBorder = Math.Round(marker.Position.Lng, 4) + clickError;
-
-            // координаты мышки
-            double x = Math.Round(gmap.FromLocalToLatLng(e.X, e.Y).Lat, 4);
-            double y = Math.Round(gmap.FromLocalToLatLng(e.X, e.Y).Lng, 4);
-
-            if ((leftBorder <= x && x <= rightBorder) && (upperBorder <= y && y <= lowerBorder))
-            {
-                MessageBox.Show("Попал!");
-                return true;
-            }
-
-            return false;
+            MessageBox.Show("Это: " + item.ToolTipText);
         }
     }
 }

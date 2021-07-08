@@ -54,17 +54,17 @@ namespace GMapApp
             this.gmap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gmap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gmap.ShowTileGridLines = false;
-            this.gmap.Size = new System.Drawing.Size(614, 427);
+            this.gmap.Size = new System.Drawing.Size(860, 537);
             this.gmap.TabIndex = 0;
             this.gmap.Zoom = 0D;
+            this.gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gmap_OnMarkerClick);
             this.gmap.Load += new System.EventHandler(this.gMapControl1_Load);
-            this.gmap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseDown);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(638, 451);
+            this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.gmap);
             this.Name = "Form1";
             this.Text = "Form1";
