@@ -18,6 +18,9 @@ namespace GMapApp
 {
     public partial class Form1 : Form
     {
+
+        GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(56.3442, 53.124), GMarkerGoogleType.red);
+
         public Form1()
         {
             InitializeComponent();
@@ -29,7 +32,7 @@ namespace GMapApp
 
             gmap.Bearing = 0;
             gmap.CanDragMap = true;
-            gmap.DragButton = MouseButtons.Left;
+            gmap.DragButton = MouseButtons.Right;
 
             gmap.GrayScaleMode = true;
 
@@ -45,10 +48,33 @@ namespace GMapApp
             gmap.ShowCenter = false;
             gmap.Zoom = 15;
 
-            gmap.MapProvider = GMap.NET.MapProviders.GMapProviders.GoogleTerrainMap;           
+            gmap.MapProvider = GMap.NET.MapProviders.GMapProviders.GoogleMap;  // или GoogleMaps         
 
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
             gmap.Position = new GMap.NET.PointLatLng(56.3490700, 53.1243900);
+
+            // Работа с маркерами
+
+            GMapOverlay markersOverlay = new GMapOverlay("markers");
+
+            marker.ToolTip = new GMap.NET.WindowsForms.ToolTips.GMapRoundedToolTip(marker);
+
+            marker.ToolTipText = "Музей Кривоногова";
+
+            markersOverlay.Markers.Add(marker);
+            gmap.Overlays.Add(markersOverlay);
+        }
+
+        private void gmap_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if ((Math.Round(gmap.FromLocalToLatLng(e.X, e.Y).Lat, 4) == Math.Round(marker.Position.Lat, 4))
+                    && (Math.Round(gmap.FromLocalToLatLng(e.X, e.Y).Lng, 4) == Math.Round(marker.Position.Lng, 4)))
+                {
+                    MessageBox.Show("В точку!");
+                }
+            }
         }
     }
 }
