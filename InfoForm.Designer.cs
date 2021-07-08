@@ -35,9 +35,10 @@ namespace GMapApp
             // 
             // imagePlace
             // 
-            this.imagePlace.Location = new System.Drawing.Point(12, 12);
+            this.imagePlace.BackColor = System.Drawing.Color.LavenderBlush;
+            this.imagePlace.Location = new System.Drawing.Point(26, 21);
             this.imagePlace.Name = "imagePlace";
-            this.imagePlace.Size = new System.Drawing.Size(156, 156);
+            this.imagePlace.Size = new System.Drawing.Size(200, 200);
             this.imagePlace.TabIndex = 0;
             this.imagePlace.TabStop = false;
             // 
@@ -45,8 +46,11 @@ namespace GMapApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.imagePlace);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "InfoForm";
             this.Text = "Информация";
             ((System.ComponentModel.ISupportInitialize)(this.imagePlace)).EndInit();

@@ -17,8 +17,9 @@ namespace GMapApp
         {
             InitializeComponent();
 
-            Bitmap image = new Bitmap(filename: GMapApp.DataPlace.paths[id]);
+            Bitmap image = new Bitmap(filename: GMapApp.DataPlace.photoPaths[id]);
             imagePlace.Image = image;
+            imagePlace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
         }
     }
 }
