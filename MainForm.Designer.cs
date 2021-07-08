@@ -59,7 +59,6 @@ namespace GMapApp
             this.gmap.Zoom = 0D;
             this.gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gmap_OnMarkerClick);
             this.gmap.Load += new System.EventHandler(this.gMapControl1_Load);
-            this.gmap.Click += new System.EventHandler(this.gmap_Click);
             // 
             // MainForm
             // 
