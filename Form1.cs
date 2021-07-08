@@ -25,6 +25,8 @@ namespace GMapApp
 
         private void gMapControl1_Load(object sender, EventArgs e)
         {
+            // Первоначальная настройки при загрузке gMapControl
+
             gmap.Bearing = 0;
             gmap.CanDragMap = true;
             gmap.DragButton = MouseButtons.Left;
