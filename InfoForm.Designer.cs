@@ -29,19 +29,33 @@ namespace GMapApp
         /// </summary>
         private void InitializeComponent()
         {
+            this.imagePlace = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.imagePlace)).BeginInit();
             this.SuspendLayout();
             // 
-            // Form2
+            // imagePlace
+            // 
+            this.imagePlace.Location = new System.Drawing.Point(12, 12);
+            this.imagePlace.Name = "imagePlace";
+            this.imagePlace.Size = new System.Drawing.Size(156, 156);
+            this.imagePlace.TabIndex = 0;
+            this.imagePlace.TabStop = false;
+            // 
+            // InfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
-            this.Name = "Form2";
+            this.Controls.Add(this.imagePlace);
+            this.Name = "InfoForm";
             this.Text = "Информация";
+            ((System.ComponentModel.ISupportInitialize)(this.imagePlace)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.PictureBox imagePlace;
     }
 }

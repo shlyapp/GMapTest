@@ -98,12 +98,12 @@ namespace GMapApp
         private void gmap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
         {
             // без понятия почему, но switch не работает
-            if (item == markers[0]) { infoForm = new InfoForm(); infoForm.Show(); }
-            if (item == markers[1]) { MessageBox.Show("это музей!"); }
-            if (item == markers[2]) { }
-            if (item == markers[3]) { }
-            if (item == markers[4]) { }
-            if (item == markers[5]) { }
+            if (item == markers[0]) { infoForm = new InfoForm(0); infoForm.Show(); }
+            if (item == markers[1]) { infoForm = new InfoForm(1); infoForm.Show(); }
+            if (item == markers[2]) { infoForm = new InfoForm(2); infoForm.Show(); }
+            if (item == markers[3]) { infoForm = new InfoForm(3); infoForm.Show(); }
+            if (item == markers[4]) { infoForm = new InfoForm(4); infoForm.Show(); }
+            if (item == markers[5]) { infoForm = new InfoForm(5); infoForm.Show(); }
         }
     }
 }

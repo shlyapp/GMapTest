@@ -8,13 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace GMapApp
 {
     public partial class InfoForm : Form
     {
-        public InfoForm()
+        public InfoForm(int id)
         {
             InitializeComponent();
+
+            Bitmap image = new Bitmap(filename: GMapApp.DataPlace.paths[id]);
+            imagePlace.Image = image;
         }
     }
 }
