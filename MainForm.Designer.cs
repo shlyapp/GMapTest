@@ -69,6 +69,7 @@ namespace GMapApp
             this.Controls.Add(this.gmap);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Интерактивная карта";
             this.ResumeLayout(false);
 

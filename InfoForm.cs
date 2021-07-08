@@ -15,6 +15,7 @@ namespace GMapApp
     {
         public InfoForm(int id)
         {
+
             InitializeComponent();
 
             Bitmap image = new Bitmap(filename: GMapApp.DataPlace.photoPaths[id]);
@@ -28,6 +29,5 @@ namespace GMapApp
             mainText.Enabled = false;
 
         }
-
     }
 }

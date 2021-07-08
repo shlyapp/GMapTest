@@ -107,6 +107,7 @@ namespace GMapApp
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "InfoForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Информация";
             ((System.ComponentModel.ISupportInitialize)(this.imagePlace)).EndInit();
             this.ResumeLayout(false);
