@@ -26,6 +26,7 @@ namespace GMapApp
 
             mainText.Text = GMapApp.DataPlace.mainText[id];
             mainText.Enabled = false;
+
         }
 
     }

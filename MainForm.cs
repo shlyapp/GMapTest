@@ -23,6 +23,7 @@ namespace GMapApp
 
         GMarkerGoogle[] markers = new GMarkerGoogle[6];
         GMapOverlay markersOverlay = new GMapOverlay("markers");
+        GMapOverlay routesOverlay = new GMapOverlay("routes");
 
         public MainForm()
         {
@@ -32,7 +33,9 @@ namespace GMapApp
         private void gMapControl1_Load(object sender, EventArgs e)
         {
             firstSetupGmap();
-            loadMakers();  
+            loadMakers();
+
+            //makeRoute(markers[5].Position, markers[4].Position);
         }
 
         // настройка gmap при первом запуске
@@ -56,7 +59,7 @@ namespace GMapApp
             gmap.ShowCenter = false;
             gmap.Zoom = 15;
 
-            gmap.MapProvider = GMap.NET.MapProviders.GMapProviders.YandexHybridMap;  // или GoogleMaps         
+            gmap.MapProvider = GMap.NET.MapProviders.GMapProviders.GoogleMap;  // или GoogleMaps         
 
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
             gmap.Position = new GMap.NET.PointLatLng(56.3490700, 53.1243900);
@@ -106,5 +109,20 @@ namespace GMapApp
             if (item == markers[4]) { infoForm = new InfoForm(4); infoForm.Show(); }
             if (item == markers[5]) { infoForm = new InfoForm(5); infoForm.Show(); }
         }
+
+        // закрываем открытое окно, если таковое имеется
+        private void gmap_Click(object sender, EventArgs e)
+        {
+            if (infoForm != null) infoForm.Close();
+        }
+
+        //private void makeRoute(PointLatLng start, PointLatLng end)
+        //{
+        //    MapRoute mapRoute = GMap.NET.MapProviders.GoogleMapProvider.Instance.GetRoute(start, end, true, true, 15);
+
+        //    GMapRoute r = new GMapRoute(mapRoute.Points, "My route");
+        //    routesOverlay.Routes.Add(r);
+        //    gmap.Overlays.Add(routesOverlay);
+        //}
     }
 }

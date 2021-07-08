@@ -32,6 +32,8 @@ namespace GMapApp
             this.imagePlace = new System.Windows.Forms.PictureBox();
             this.labelText = new System.Windows.Forms.TextBox();
             this.mainText = new System.Windows.Forms.TextBox();
+            this.testBtn = new System.Windows.Forms.Button();
+            this.routeBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imagePlace)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,12 +69,38 @@ namespace GMapApp
             this.mainText.Size = new System.Drawing.Size(557, 365);
             this.mainText.TabIndex = 2;
             // 
+            // testBtn
+            // 
+            this.testBtn.BackColor = System.Drawing.Color.RosyBrown;
+            this.testBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.testBtn.Font = new System.Drawing.Font("Book Antiqua", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.testBtn.Location = new System.Drawing.Point(26, 418);
+            this.testBtn.Name = "testBtn";
+            this.testBtn.Size = new System.Drawing.Size(220, 78);
+            this.testBtn.TabIndex = 3;
+            this.testBtn.Text = "Перейти к тесту.";
+            this.testBtn.UseVisualStyleBackColor = false;
+            // 
+            // routeBtn
+            // 
+            this.routeBtn.BackColor = System.Drawing.Color.RosyBrown;
+            this.routeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.routeBtn.Font = new System.Drawing.Font("Book Antiqua", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.routeBtn.Location = new System.Drawing.Point(26, 310);
+            this.routeBtn.Name = "routeBtn";
+            this.routeBtn.Size = new System.Drawing.Size(220, 78);
+            this.routeBtn.TabIndex = 4;
+            this.routeBtn.Text = "Маршрут.";
+            this.routeBtn.UseVisualStyleBackColor = false;
+            // 
             // InfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.routeBtn);
+            this.Controls.Add(this.testBtn);
             this.Controls.Add(this.mainText);
             this.Controls.Add(this.labelText);
             this.Controls.Add(this.imagePlace);
@@ -91,5 +119,7 @@ namespace GMapApp
         private System.Windows.Forms.PictureBox imagePlace;
         private System.Windows.Forms.TextBox labelText;
         private System.Windows.Forms.TextBox mainText;
+        private System.Windows.Forms.Button testBtn;
+        private System.Windows.Forms.Button routeBtn;
     }
 }
