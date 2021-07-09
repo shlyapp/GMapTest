@@ -22,6 +22,9 @@ namespace GMapApp
 {
     public partial class MainForm : Form
     {
+
+        //AppContext db;
+
         InfoForm infoForm;
 
         GMarkerGoogle[] markers = new GMarkerGoogle[6];
@@ -33,6 +36,8 @@ namespace GMapApp
         public MainForm()
         {
             InitializeComponent();
+
+            //db = new AppContext();
         }
 
         private void gMapControl1_Load(object sender, EventArgs e)
@@ -40,6 +45,7 @@ namespace GMapApp
             firstSetupGmap();
             loadMakers();
 
+            GMapApp.DataPlace.loadData();
             //loadRoutes();
         }
 
@@ -147,6 +153,11 @@ namespace GMapApp
 
         private void gmap_MouseClick(object sender, MouseEventArgs e)
         {
+            //Place place = new Place("place", "toopltip", "description", "image");
+            //db.Places.Add(place);
+
+            MessageBox.Show(GMapApp.DataPlace.places[0].description);
+
             if (e.Button == MouseButtons.Right)
             {
                 points.Add(gmap.FromLocalToLatLng(e.X, e.Y));
@@ -164,6 +175,7 @@ namespace GMapApp
                 str.WriteLine(coord);
             }
 
+            //db.SaveChanges();
             str.Close();
         }
 
