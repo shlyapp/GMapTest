@@ -23,7 +23,7 @@ namespace GMapApp
     public partial class MainForm : Form
     {
 
-        //AppContext db;
+        AppContext db;
 
         InfoForm infoForm;
 
@@ -37,16 +37,17 @@ namespace GMapApp
         {
             InitializeComponent();
 
-            //db = new AppContext();
+            db = new AppContext();
         }
 
         private void gMapControl1_Load(object sender, EventArgs e)
         {
             firstSetupGmap();
-            loadMakers();
+ 
 
             GMapApp.DataPlace.loadData();
             //loadRoutes();
+            loadMakers();
         }
 
         // настройка gmap при первом запуске
@@ -94,32 +95,10 @@ namespace GMapApp
         // загрузка всех маркеров
         private void loadMakers()
         {
-            PointLatLng[] coords = new PointLatLng[6]
+
+            for (int i = 0; i < GMapApp.DataPlace.markers.Count; i++)
             {
-                new PointLatLng(56.34362607288647, 53.124973176563806),
-                new PointLatLng(56.34507985118993, 53.1246026136887),
-                new PointLatLng(56.344925259810594, 53.125269412994385),
-                new PointLatLng(56.34594547389484, 53.12523730645809),
-                new PointLatLng(56.34683348667316, 53.12585809611392),
-                new PointLatLng(56.35142687398434, 53.12557439423018)
-            };
-
-            String[] toolTipText = new String[6]
-           {
-                "Сквер имени П.А. Кривоногова,\nпамятник П.А. Кривоногову",
-                "МБУ 'Киясовский районный музей\nКривоногова Петра Александровича'",
-                "Бюст Героя Советского Союза В.Г. Шамшурина\nи памятник труженикам тыла и детям войны",
-                "Памятник землякам, погибшим в локальных войнах",
-                "Мемориал памяти землякам, павшим\nв годы Великой Отечественной войны 1941-1945 гг",
-                "Бюст Героя Советского Союза В.Г. Шамшурина"
-           };
-
-            for (int i = 0; i < 6; i++)
-            {
-                markers[i] = new GMarkerGoogle(coords[i], GMarkerGoogleType.red);
-                markers[i].ToolTipText = toolTipText[i];
-
-                markersOverlay.Markers.Add(markers[i]);
+                markersOverlay.Markers.Add(GMapApp.DataPlace.markers[i]);
             }
 
             gmap.Overlays.Add(markersOverlay);
@@ -153,10 +132,12 @@ namespace GMapApp
 
         private void gmap_MouseClick(object sender, MouseEventArgs e)
         {
-            //Place place = new Place("place", "toopltip", "description", "image");
+            //Place place = new Place("place", "toopltip", "description", "image", 123, 123);
             //db.Places.Add(place);
 
-            MessageBox.Show(GMapApp.DataPlace.places[0].description);
+           //Route route = new Route("SquareToMuseum", "test");
+            //db.Routes.Add(route);
+            MessageBox.Show(GMapApp.DataPlace.routes[0].name);
 
             if (e.Button == MouseButtons.Right)
             {

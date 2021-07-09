@@ -11,7 +11,9 @@ namespace GMapApp
     class AppContext : DbContext
     {
 
-        public DbSet<Place> Places { get; set;  }
+        public DbSet<Place> Places { get; set; }
+
+        public DbSet<Route> Routes { get; set; }
 
         public AppContext() : base("DefaultConnection") { }
 

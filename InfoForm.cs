@@ -18,15 +18,15 @@ namespace GMapApp
 
             InitializeComponent();
 
-            Bitmap image = new Bitmap(filename: GMapApp.DataPlace.photoPaths[id]);
-            imagePlace.Image = image;
-            imagePlace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            //Bitmap image = new Bitmap(filename: GMapApp.DataPlace.photoPaths[id]);
+            //imagePlace.Image = image;
+            //imagePlace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 
-            labelText.Text = GMapApp.DataPlace.placeLabels[id];
-            labelText.Enabled = false;
+            //labelText.Text = GMapApp.DataPlace.placeLabels[id];
+            //labelText.Enabled = false;
 
-            mainText.Text = GMapApp.DataPlace.mainText[id];
-            mainText.Enabled = false;
+            //mainText.Text = GMapApp.DataPlace.mainText[id];
+            //mainText.Enabled = false;
 
         }
     }
