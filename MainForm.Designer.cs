@@ -30,6 +30,7 @@ namespace GMapApp
         private void InitializeComponent()
         {
             this.gmap = new GMap.NET.WindowsForms.GMapControl();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // gmap
@@ -40,7 +41,8 @@ namespace GMapApp
             this.gmap.GrayScaleMode = false;
             this.gmap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gmap.LevelsKeepInMemmory = 5;
-            this.gmap.Location = new System.Drawing.Point(12, 12);
+            this.gmap.Location = new System.Drawing.Point(416, 12);
+            this.gmap.Margin = new System.Windows.Forms.Padding(7);
             this.gmap.MarkersEnabled = true;
             this.gmap.MaxZoom = 2;
             this.gmap.MinZoom = 2;
@@ -54,23 +56,25 @@ namespace GMapApp
             this.gmap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gmap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gmap.ShowTileGridLines = false;
-            this.gmap.Size = new System.Drawing.Size(860, 537);
+            this.gmap.Size = new System.Drawing.Size(452, 533);
             this.gmap.TabIndex = 0;
             this.gmap.Zoom = 0D;
             this.gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gmap_OnMarkerClick);
             this.gmap.Load += new System.EventHandler(this.gMapControl1_Load);
+            this.gmap.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.gmap);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Интерактивная карта";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.ResumeLayout(false);
 
         }
@@ -78,6 +82,7 @@ namespace GMapApp
         #endregion
 
         private GMap.NET.WindowsForms.GMapControl gmap;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

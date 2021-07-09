@@ -25,6 +25,8 @@ namespace GMapApp
         InfoForm infoForm;
 
         GMarkerGoogle[] markers = new GMarkerGoogle[6];
+        List<PointLatLng> points = new List<PointLatLng>();
+
         GMapOverlay markersOverlay = new GMapOverlay("markers");
         GMapOverlay routesOverlay = new GMapOverlay("routes");
 
@@ -38,9 +40,7 @@ namespace GMapApp
             firstSetupGmap();
             loadMakers();
 
-            //makeRoute(markers[5].Position, markers[4].Position);
-
-            makeRoute();
+            //loadRoutes();
         }
 
         // настройка gmap при первом запуске
@@ -64,10 +64,25 @@ namespace GMapApp
             gmap.ShowCenter = false;
             gmap.Zoom = 15;
 
-            gmap.MapProvider = GMap.NET.MapProviders.GMapProviders.GoogleMap;  // или GoogleMaps         
+            gmap.MapProvider = GMap.NET.MapProviders.GMapProviders.YandexHybridMap;  // или GoogleMaps         
 
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
             gmap.Position = new GMap.NET.PointLatLng(56.3490700, 53.1243900);
+        }
+
+        private void loadRoutes()
+        {
+            string[] lines = System.IO.File.ReadAllLines("3.txt");
+            
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string[] point = lines[i].Split(new char[] { ';' });
+                points.Add(new PointLatLng(Convert.ToDouble(point[0]), Convert.ToDouble(point[1])));
+            }
+
+            routesOverlay.Routes.Add(makeRoute());
+            gmap.Overlays.Add(routesOverlay);
+
         }
 
         // загрузка всех маркеров
@@ -117,65 +132,40 @@ namespace GMapApp
             Show();
         }
 
-       
-
-        //private void makeRoute(PointLatLng start, PointLatLng end)
-        //{
-        //    MapRoute mapRoute = GMap.NET.MapProviders.GoogleMapProvider.Instance.GetRoute(start, end, true, true, 15);
-
-        //    GMapRoute r = new GMapRoute(mapRoute.Points, "My route");
-        //    routesOverlay.Routes.Add(r);
-        //    gmap.Overlays.Add(routesOverlay);
-        //}
-
-        //private void makeRoute()
-        //{
-        //    string r = "https://maps.googleapis.com/maps/api/directions/xml?origin={0},&destination={1}&sensor=false&language=ru&mode={2}&key=AIzaSyChRMj9oB1FKt7SYs-KY-PjmoJpUQL0Nck";
-
-        //    string url = string.Format(r,
-        //        Uri.EscapeDataString("Киясово, улица Шамшурина, 32"),
-        //        Uri.EscapeDataString("Киясово, улица Шамушрина, 40"),
-        //        Uri.EscapeDataString("driving"));
-
-        //    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-        //    WebResponse response = request.GetResponse();
-
-        //    Stream dataStream = response.GetResponseStream();
-        //    StreamReader sreader = new StreamReader(dataStream);
-        //    string responsereader = sreader.ReadToEnd();
-        //    response.Close();
-
-        //    XmlDocument xmlDoc = new XmlDocument();
-        //    xmlDoc.LoadXml(responsereader);
-        //    if (xmlDoc.GetElementsByTagName("status")[0].ChildNodes[0].InnerText == "OK")
-        //    {
-        //        XmlNodeList nodes = xmlDoc.SelectNodes("//leg//ster");
-
-        //        double latStart = XmlConvert.ToDouble(xmlDoc.GetElementsByTagName("start_location")[nodes.Count].ChildNodes[0].InnerText);
-        //        double lngStart = XmlConvert.ToDouble(xmlDoc.GetElementsByTagName("start_location")[nodes.Count].ChildNodes[1].InnerText);
-
-        //        double lngEnd = XmlConvert.ToDouble(xmlDoc.GetElementsByTagName("end_location")[nodes.Count].ChildNodes[0].InnerText);
-        //        double latEnd = XmlConvert.ToDouble(xmlDoc.GetElementsByTagName("end_location")[nodes.Count].ChildNodes[1].InnerText);
-
-        //        gmap.Overlays.Add(routesOverlay);
-
-        //    }
-        //}
-
-        private void makeRoute()
+        private GMapRoute makeRoute()
         {
-            List<PointLatLng> points = new List<PointLatLng>();
+            GMapRoute route = new GMapRoute(points, "route");
 
-            points.Add(new PointLatLng(56.34683348667316, 53.12585809611392));
-            points.Add(new PointLatLng(56.35142687398434, 53.12557439423018));
-
-            GMapRoute route = new GMapRoute(points, "road");
-
-            route.Stroke = new Pen(Color.Red, 3);
+            route.Stroke = new Pen(Color.Green, 4);
 
             routesOverlay.Routes.Add(route);
             gmap.Overlays.Add(routesOverlay);
 
+            return route;
+
         }
+
+        private void gmap_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                points.Add(gmap.FromLocalToLatLng(e.X, e.Y));
+                makeRoute();
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            StreamWriter str = new StreamWriter("5.txt");
+
+            for (int i = 0; i < points.Count(); i++)
+            {
+                string coord = points[i].Lat.ToString() + ";" + points[i].Lng.ToString();
+                str.WriteLine(coord);
+            }
+
+            str.Close();
+        }
+
     }
 }
