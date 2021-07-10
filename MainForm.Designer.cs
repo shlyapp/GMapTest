@@ -31,6 +31,7 @@ namespace GMapApp
         {
             this.gmap = new GMap.NET.WindowsForms.GMapControl();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.welcomText = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // gmap
@@ -62,12 +63,26 @@ namespace GMapApp
             this.gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gmap_OnMarkerClick);
             this.gmap.Load += new System.EventHandler(this.gMapControl1_Load);
             // 
+            // welcomText
+            // 
+            this.welcomText.BackColor = System.Drawing.Color.LavenderBlush;
+            this.welcomText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.welcomText.Font = new System.Drawing.Font("Book Antiqua", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.welcomText.Location = new System.Drawing.Point(12, 82);
+            this.welcomText.Multiline = true;
+            this.welcomText.Name = "welcomText";
+            this.welcomText.ReadOnly = true;
+            this.welcomText.Size = new System.Drawing.Size(378, 396);
+            this.welcomText.TabIndex = 1;
+            this.welcomText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.welcomText);
             this.Controls.Add(this.gmap);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "MainForm";
@@ -75,6 +90,7 @@ namespace GMapApp
             this.Text = "Интерактивная карта";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -82,6 +98,7 @@ namespace GMapApp
 
         private GMap.NET.WindowsForms.GMapControl gmap;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.TextBox welcomText;
     }
 }
 
