@@ -54,6 +54,7 @@ namespace GMapApp
             this.labelText.Location = new System.Drawing.Point(277, 21);
             this.labelText.Multiline = true;
             this.labelText.Name = "labelText";
+            this.labelText.ReadOnly = true;
             this.labelText.Size = new System.Drawing.Size(557, 137);
             this.labelText.TabIndex = 1;
             this.labelText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -66,6 +67,7 @@ namespace GMapApp
             this.mainText.Location = new System.Drawing.Point(276, 172);
             this.mainText.Multiline = true;
             this.mainText.Name = "mainText";
+            this.mainText.ReadOnly = true;
             this.mainText.Size = new System.Drawing.Size(557, 365);
             this.mainText.TabIndex = 2;
             // 
@@ -80,6 +82,7 @@ namespace GMapApp
             this.testBtn.TabIndex = 3;
             this.testBtn.Text = "Перейти к тесту.";
             this.testBtn.UseVisualStyleBackColor = false;
+            this.testBtn.Click += new System.EventHandler(this.testBtn_Click);
             // 
             // routeBtn
             // 
@@ -110,6 +113,7 @@ namespace GMapApp
             this.Name = "InfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Информация";
+            this.Load += new System.EventHandler(this.InfoForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imagePlace)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

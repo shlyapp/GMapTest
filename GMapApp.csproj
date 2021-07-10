@@ -109,6 +109,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="db.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

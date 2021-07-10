@@ -15,12 +15,17 @@ namespace GMapApp
     public partial class InfoForm : Form
     {
         int id;
+        TestForm testForm;
 
         public InfoForm(int id)
         {
             InitializeComponent();
 
             this.id = id;
+        }
+
+        private void InfoForm_Load(object sender, EventArgs e)
+        {
 
             Bitmap image = new Bitmap(Directory.GetCurrentDirectory().Substring(0, Directory.GetCurrentDirectory().Length - 9) + GMapApp.DataPlace.places[id].image);
             imagePlace.Image = image;
@@ -31,22 +36,30 @@ namespace GMapApp
 
             mainText.Text = GMapApp.DataPlace.places[id].description;
             mainText.Enabled = false;
-
         }
 
         private void routeBtn_Click(object sender, EventArgs e)
-        {
-            if (id == 5)
-            {
-                MessageBox.Show("Нет маршрута.");
-            }
-            else
+        { 
+            try
             {
                 foreach (GMap.NET.WindowsForms.GMapRoute route in GMapApp.MainForm.routesOverlay.Routes) { route.IsVisible = false; }
                 GMapApp.MainForm.routesOverlay.Routes[id].IsVisible = true;
                 Close();
             }
-            
+            catch (Exception)
+            {
+                MessageBox.Show("Нет маршрута.");
+                Close();
+            }     
         }
+
+        private void testBtn_Click(object sender, EventArgs e)
+        {
+            Hide();
+            testForm = new TestForm();
+            testForm.ShowDialog();
+            Close();
+        }
+
     }
 }

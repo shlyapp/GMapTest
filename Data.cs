@@ -49,6 +49,7 @@ namespace GMapApp
                 }
 
                 GMapRoute route = new GMapRoute(points, "route");
+                route.Stroke = new System.Drawing.Pen(System.Drawing.Color.Green, 4);
                 route.IsVisible = false;
                 GMapApp.MainForm.routesOverlay.Routes.Add(route);
 
