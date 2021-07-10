@@ -30,8 +30,8 @@ namespace GMapApp
         GMarkerGoogle[] markers = new GMarkerGoogle[6];
         List<PointLatLng> points = new List<PointLatLng>();
 
-        GMapOverlay markersOverlay = new GMapOverlay("markers");
-        GMapOverlay routesOverlay = new GMapOverlay("routes");
+        public static GMapOverlay markersOverlay = new GMapOverlay("markers");
+        public static GMapOverlay routesOverlay = new GMapOverlay("routes");
 
         public MainForm()
         {
@@ -47,7 +47,9 @@ namespace GMapApp
 
             GMapApp.DataPlace.loadData();
             //loadRoutes();
-            loadMakers();
+            //loadMakers();
+            gmap.Overlays.Add(markersOverlay);
+            gmap.Overlays.Add(routesOverlay);
         }
 
         // настройка gmap при первом запуске
@@ -77,31 +79,12 @@ namespace GMapApp
             gmap.Position = new GMap.NET.PointLatLng(56.3490700, 53.1243900);
         }
 
-        private void loadRoutes()
-        {
-            string[] lines = System.IO.File.ReadAllLines("3.txt");
-            
-            for (int i = 0; i < lines.Length; i++)
-            {
-                string[] point = lines[i].Split(new char[] { ';' });
-                points.Add(new PointLatLng(Convert.ToDouble(point[0]), Convert.ToDouble(point[1])));
-            }
-
-            routesOverlay.Routes.Add(makeRoute());
-            gmap.Overlays.Add(routesOverlay);
-
-        }
 
         // загрузка всех маркеров
         private void loadMakers()
         {
 
-            for (int i = 0; i < GMapApp.DataPlace.markers.Count; i++)
-            {
-                markersOverlay.Markers.Add(GMapApp.DataPlace.markers[i]);
-            }
-
-            gmap.Overlays.Add(markersOverlay);
+            
         }
 
         private void gmap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
@@ -117,19 +100,6 @@ namespace GMapApp
             Show();
         }
 
-        private GMapRoute makeRoute()
-        {
-            GMapRoute route = new GMapRoute(points, "route");
-
-            route.Stroke = new Pen(Color.Green, 4);
-
-            routesOverlay.Routes.Add(route);
-            gmap.Overlays.Add(routesOverlay);
-
-            return route;
-
-        }
-
         private void gmap_MouseClick(object sender, MouseEventArgs e)
         {
             //Place place = new Place("place", "toopltip", "description", "image", 123, 123);
@@ -137,13 +107,7 @@ namespace GMapApp
 
            //Route route = new Route("SquareToMuseum", "test");
             //db.Routes.Add(route);
-            MessageBox.Show(GMapApp.DataPlace.routes[0].name);
-
-            if (e.Button == MouseButtons.Right)
-            {
-                points.Add(gmap.FromLocalToLatLng(e.X, e.Y));
-                makeRoute();
-            }
+            MessageBox.Show(GMapApp.DataPlace.routes[1].points);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
