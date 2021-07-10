@@ -27,7 +27,7 @@ namespace GMapApp
 
         public static List<Place> places =  new List<Place>();
         public static List<Route> routes = new List<Route>();
-        public static List<GMarkerGoogle> markers = new List<GMarkerGoogle>();
+        //public static List<GMarkerGoogle> markers = new List<GMarkerGoogle>();
 
         public static void loadData()
         {
@@ -45,7 +45,7 @@ namespace GMapApp
 
             char[] spliters = { '\n', ';' };
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < routes.Count(); i++)
             {
 
                 string[] pointsAsStr = routes[i].points.Split(spliters[0]);
@@ -60,6 +60,7 @@ namespace GMapApp
                 }
 
                 GMapRoute route = new GMapRoute(points, "route");
+                route.IsVisible = false;
                 GMapApp.MainForm.routesOverlay.Routes.Add(route);
 
             }

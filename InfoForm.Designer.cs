@@ -92,6 +92,7 @@ namespace GMapApp
             this.routeBtn.TabIndex = 4;
             this.routeBtn.Text = "Маршрут.";
             this.routeBtn.UseVisualStyleBackColor = false;
+            this.routeBtn.Click += new System.EventHandler(this.routeBtn_Click);
             // 
             // InfoForm
             // 
