@@ -14,10 +14,13 @@ namespace GMapApp
     {
 
         int num = 0;
+        int id = 0;
 
-        public TestForm()
+        public TestForm(int id)
         {
             InitializeComponent();
+
+            this.id = id;
 
             answerText.TextAlign = HorizontalAlignment.Center;
             
@@ -45,6 +48,12 @@ namespace GMapApp
             if (num >= GMapApp.DataPlace.tests.Count)
             {
                 MessageBox.Show("Поздравляем с прохождением теста.\nВам открылся новый маршрут!");
+
+                if (GMapApp.DataPlace.user.unlockPlace.IndexOf(id.ToString()) == -1)
+                {
+                    GMapApp.DataPlace.user.addUnlockPlace(id);
+                }
+
                 Close();
             }
             else

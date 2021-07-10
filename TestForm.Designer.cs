@@ -41,11 +41,11 @@ namespace GMapApp
             this.answerText.BackColor = System.Drawing.Color.LavenderBlush;
             this.answerText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.answerText.Font = new System.Drawing.Font("Book Antiqua", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.answerText.Location = new System.Drawing.Point(12, 249);
+            this.answerText.Location = new System.Drawing.Point(23, 249);
             this.answerText.Margin = new System.Windows.Forms.Padding(3, 13, 3, 3);
             this.answerText.Multiline = true;
             this.answerText.Name = "answerText";
-            this.answerText.Size = new System.Drawing.Size(431, 49);
+            this.answerText.Size = new System.Drawing.Size(409, 49);
             this.answerText.TabIndex = 0;
             // 
             // contextMenuStrip1

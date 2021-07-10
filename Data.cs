@@ -16,14 +16,19 @@ namespace GMapApp
         public static List<Place> places =  new List<Place>();
         public static List<Route> routes = new List<Route>();
         public static List<Test> tests = new List<Test>();
+        public static User user;
+
+        private static AppContext db;
 
         public static void loadData()
         {
-            AppContext db = new AppContext();
+            db = new AppContext();
 
             places = db.Places.ToList();
             routes = db.Routes.ToList();
             tests = db.Tests.ToList();
+
+            user = db.Users.ToArray()[0];
 
             for (int i = 0; i < places.Count; i++)
             {
@@ -54,6 +59,11 @@ namespace GMapApp
                 GMapApp.MainForm.routesOverlay.Routes.Add(route);
 
             }
+        }
+
+        public static void saveData()
+        {
+            db.SaveChanges();
         }
     }
 }

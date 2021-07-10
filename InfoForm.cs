@@ -39,24 +39,32 @@ namespace GMapApp
         }
 
         private void routeBtn_Click(object sender, EventArgs e)
-        { 
-            try
+        {
+
+            if (GMapApp.DataPlace.user.unlockPlace.IndexOf(id.ToString()) != -1)
             {
-                foreach (GMap.NET.WindowsForms.GMapRoute route in GMapApp.MainForm.routesOverlay.Routes) { route.IsVisible = false; }
-                GMapApp.MainForm.routesOverlay.Routes[id].IsVisible = true;
-                Close();
+                try
+                {
+                    foreach (GMap.NET.WindowsForms.GMapRoute route in GMapApp.MainForm.routesOverlay.Routes) { route.IsVisible = false; }
+                    GMapApp.MainForm.routesOverlay.Routes[id].IsVisible = true;
+                    Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Нет маршрута.");
+                    Close();
+                }
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("Нет маршрута.");
-                Close();
-            }     
+                MessageBox.Show("Данный маршрут еще не открыт.\nВам стоит изучить предыдущие места.");
+            }
         }
 
         private void testBtn_Click(object sender, EventArgs e)
         {
             Hide();
-            testForm = new TestForm();
+            testForm = new TestForm(id);
             testForm.ShowDialog();
             Close();
         }

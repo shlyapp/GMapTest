@@ -20,6 +20,7 @@ using System.Net;
 
 namespace GMapApp
 {
+
     public partial class MainForm : Form
     {
         InfoForm infoForm;
@@ -40,6 +41,7 @@ namespace GMapApp
 
             gmap.Overlays.Add(markersOverlay);
             gmap.Overlays.Add(routesOverlay);
+
         }
 
         // настройка gmap при первом запуске
@@ -82,5 +84,9 @@ namespace GMapApp
             Show();
         }
 
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            GMapApp.DataPlace.saveData();
+        }
     }
 }

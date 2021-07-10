@@ -17,6 +17,8 @@ namespace GMapApp
 
         public DbSet<Test> Tests { get; set; }
 
+        public DbSet<User> Users { get; set; }
+
         public AppContext() : base("DefaultConnection") { }
 
     }

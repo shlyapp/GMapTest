@@ -77,4 +77,23 @@ namespace GMapApp
             this.answer = answer;
         }
     }
+
+    [Table("Users")]
+
+    public class User
+    {
+        [Key]
+
+        public int id { get; set; }
+
+        public string unlockPlace { get; set; }
+
+        public User() { }
+
+        public void addUnlockPlace(int num)
+        {
+            unlockPlace += Convert.ToString(num);
+        }
+
+    }
 }
