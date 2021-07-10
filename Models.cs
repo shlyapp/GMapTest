@@ -38,7 +38,6 @@ namespace GMapApp
             this.lat = lat;
             this.lng = lng;
         }
-
     }
 
     [Table("Routes")]
@@ -58,6 +57,24 @@ namespace GMapApp
             this.name = name;
             this.points = points;
         }
+    }
 
+    [Table("Tests")]
+
+    public class Test
+    {
+        [Key]
+
+        public string question { get; set; }
+
+        public string answer { get; set; }
+
+        public Test() { }
+
+        public Test(string question, string answer)
+        {
+            this.question = question;
+            this.answer = answer;
+        }
     }
 }

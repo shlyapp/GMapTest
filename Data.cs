@@ -13,21 +13,9 @@ namespace GMapApp
 {
     public class DataPlace
     {
-        //public static readonly string directory = Directory.GetCurrentDirectory().Substring(0, Directory.GetCurrentDirectory().Length-9);
-
-        //public static string[] photoPaths = new String[6]
-        //{
-        //    directory + "Images/krivonogov.jpg",
-        //    directory + "Images/museum.jpg",
-        //    directory + "Images/truzenikam.jpg",
-        //    directory + "Images/btr.jpg",
-        //    directory + "Images/stella.jpg",
-        //    directory + "Images/shamshurin.jpg"
-        //};
-
         public static List<Place> places =  new List<Place>();
         public static List<Route> routes = new List<Route>();
-        //public static List<GMarkerGoogle> markers = new List<GMarkerGoogle>();
+        public static List<Test> tests = new List<Test>();
 
         public static void loadData()
         {
@@ -35,6 +23,7 @@ namespace GMapApp
 
             places = db.Places.ToList();
             routes = db.Routes.ToList();
+            tests = db.Tests.ToList();
 
             for (int i = 0; i < places.Count; i++)
             {
