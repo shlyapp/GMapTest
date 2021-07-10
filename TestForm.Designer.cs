@@ -30,6 +30,7 @@ namespace GMapApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestForm));
             this.answerText = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.checkBtn = new System.Windows.Forms.Button();
@@ -88,9 +89,10 @@ namespace GMapApp
             this.Controls.Add(this.question);
             this.Controls.Add(this.checkBtn);
             this.Controls.Add(this.answerText);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TestForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TestForm";
+            this.Text = "Проверка знаний";
             this.Load += new System.EventHandler(this.TestForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

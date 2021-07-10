@@ -29,6 +29,7 @@ namespace GMapApp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.gmap = new GMap.NET.WindowsForms.GMapControl();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.welcomText = new System.Windows.Forms.TextBox();
@@ -85,9 +86,10 @@ namespace GMapApp
             this.Controls.Add(this.welcomText);
             this.Controls.Add(this.gmap);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Интерактивная карта";
+            this.Text = "Главная";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

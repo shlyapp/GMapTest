@@ -29,6 +29,7 @@ namespace GMapApp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InfoForm));
             this.imagePlace = new System.Windows.Forms.PictureBox();
             this.labelText = new System.Windows.Forms.TextBox();
             this.mainText = new System.Windows.Forms.TextBox();
@@ -108,11 +109,12 @@ namespace GMapApp
             this.Controls.Add(this.mainText);
             this.Controls.Add(this.labelText);
             this.Controls.Add(this.imagePlace);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "InfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Информация";
+            this.Text = "Историческая справка";
             this.Load += new System.EventHandler(this.InfoForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imagePlace)).EndInit();
             this.ResumeLayout(false);

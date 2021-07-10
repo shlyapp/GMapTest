@@ -76,13 +76,16 @@ namespace GMapApp
         private void gmap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
         {
             Hide();
-            // без понятия почему, но switch не работает
+
+            #region Проверка на совпадение
             if (item == markersOverlay.Markers[0]) { infoForm = new InfoForm(0); infoForm.ShowDialog(); }
             if (item == markersOverlay.Markers[1]) { infoForm = new InfoForm(1); infoForm.ShowDialog(); }
             if (item == markersOverlay.Markers[2]) { infoForm = new InfoForm(2); infoForm.ShowDialog(); }
             if (item == markersOverlay.Markers[3]) { infoForm = new InfoForm(3); infoForm.ShowDialog(); }
             if (item == markersOverlay.Markers[4]) { infoForm = new InfoForm(4); infoForm.ShowDialog(); }
             if (item == markersOverlay.Markers[5]) { infoForm = new InfoForm(5); infoForm.ShowDialog(); }
+            #endregion
+
             Show();
         }
 
