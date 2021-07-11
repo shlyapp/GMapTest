@@ -12,8 +12,9 @@ namespace GMapApp
 {
     public partial class TestForm : Form
     {
-
+        // номер вопроса
         int num = 0;
+        // идентификатор места
         int id = 0;
 
         public TestForm(int id)
@@ -28,12 +29,15 @@ namespace GMapApp
 
         private void TestForm_Load(object sender, EventArgs e)
         {
+            // при загрузке формы появляется необходимый текст вопроса
             question.Text = GMapApp.DataPlace.tests[num].question;
         }
 
+        // обработчик события надатия кнопки "Проверить"
         private void checkBtn_Click(object sender, EventArgs e)
         {
-            if (answerText.Text == GMapApp.DataPlace.tests[num].answer)
+            // проверяем на правильность
+            if (answerText.Text.Trim() == GMapApp.DataPlace.tests[num].answer)
             {
                 MessageBox.Show("Верно!");
             }
@@ -42,9 +46,12 @@ namespace GMapApp
                 MessageBox.Show("Неверный ответ.");
             }
 
+            // очищаем поле ввода
             answerText.Clear();
+            // инкрементируем номер вопроса
             num++;
 
+            // проверяем на наличия след.вопроса
             if (num >= GMapApp.DataPlace.tests.Count)
             {
                 MessageBox.Show("Поздравляем с прохождением теста.\nВам открылся новый маршрут!");

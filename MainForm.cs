@@ -25,6 +25,7 @@ namespace GMapApp
     {
         InfoForm infoForm;
 
+        // слои с маркерами и маршрутом
         public static GMapOverlay markersOverlay = new GMapOverlay("markers");
         public static GMapOverlay routesOverlay = new GMapOverlay("routes");
 
@@ -36,12 +37,14 @@ namespace GMapApp
         private void gMapControl1_Load(object sender, EventArgs e)
         {
             firstSetupGmap();
- 
+            
+            // загружаем данные из БД
             GMapApp.DataPlace.loadData();
 
             gmap.Overlays.Add(markersOverlay);
             gmap.Overlays.Add(routesOverlay);
 
+            // приветственный текст
             welcomText.Text = "Здравствуйте! Команда проекта приветствует Вас в нашем приложении. Если Вы готовы узнать больше об истории Киясовского района и его жителях, выберите маршрут и способ передвижения. С наилучшими пожеланиями, ученики 11 класса МБОУ «Киясовская СОШ» Екатерина Шутова, Даниил Костенков, Виктория Бузанова, Виктория Замилова.";
 
         }

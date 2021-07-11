@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 namespace GMapApp
 {
 
+    // в этом файле находятся классы, описывающие модель для базы данных
+
     [Table("places")]
 
     public class Place

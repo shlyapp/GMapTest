@@ -8,6 +8,9 @@ using System.Data.Entity;
 
 namespace GMapApp
 {
+
+    // класс контекста базы данных
+
     class AppContext : DbContext
     {
 
